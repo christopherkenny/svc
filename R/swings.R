@@ -2,9 +2,9 @@ svc_unif <- function(plans, dvs) {
   dvs <- rlang::enquo(dvs)
   #dvs <- if (rlang::is_quosure(dvs)) dvs else rlang::enquo(dvs)
   plans %>%
-    as_tibble() %>%
-    group_by(draw) %>%
-    group_modify(~.x %>% pull(!!dvs) %>% swing_unif())
+    dplyr::as_tibble() %>%
+    dplyr::group_by(.data$draw) %>%
+    dplyr::group_modify(~.x %>% dplyr::pull(!!dvs) %>% swing_unif())
 }
 
 
